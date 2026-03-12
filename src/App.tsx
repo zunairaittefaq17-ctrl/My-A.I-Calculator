@@ -218,54 +218,58 @@ export default function App() {
           </div>
 
           {/* Keypad */}
-          <div className="p-6 space-y-4">
-            {/* Scientific Functions */}
-            <div className="grid grid-cols-5 gap-2">
-              <Button variant="function" onClick={() => handleFunction('sin')}>sin</Button>
-              <Button variant="function" onClick={() => handleFunction('cos')}>cos</Button>
-              <Button variant="function" onClick={() => handleFunction('tan')}>tan</Button>
-              <Button variant="function" onClick={() => handleFunction('log')}>log</Button>
-              <Button variant="function" onClick={() => handleFunction('ln')}>ln</Button>
-              
-              <Button variant="function" onClick={() => handleFunction('sqrt')}>√</Button>
-              <Button variant="function" onClick={() => handleFunction('pow2')}>x²</Button>
-              <Button variant="function" onClick={() => handleFunction('pow3')}>x³</Button>
-              <Button variant="function" onClick={() => handleFunction('exp')}>exp</Button>
-              <Button variant="function" onClick={() => handleFunction('fact')}>n!</Button>
+          <div className="p-4 md:p-6 grid grid-cols-4 gap-2 md:gap-3">
+            {/* Scientific Row 1 */}
+            <Button variant="function" onClick={() => handleFunction('sin')}>sin</Button>
+            <Button variant="function" onClick={() => handleFunction('cos')}>cos</Button>
+            <Button variant="function" onClick={() => handleFunction('tan')}>tan</Button>
+            <Button variant="function" onClick={() => handleFunction('log')}>log</Button>
+            
+            {/* Scientific Row 2 */}
+            <Button variant="function" onClick={() => handleFunction('ln')}>ln</Button>
+            <Button variant="function" onClick={() => handleFunction('sqrt')}>√</Button>
+            <Button variant="function" onClick={() => handleFunction('pow2')}>x²</Button>
+            <Button variant="function" onClick={() => handleFunction('pow3')}>x³</Button>
 
-              <Button variant="function" onClick={() => handleNumber('(')}>(</Button>
-              <Button variant="function" onClick={() => handleNumber(')')}>)</Button>
-              <Button variant="function" onClick={() => handleOperator('^')}>^</Button>
-              <Button variant="function" onClick={() => handleNumber('pi')}>π</Button>
-              <Button variant="function" onClick={() => handleNumber('e')}>e</Button>
-            </div>
+            {/* Scientific Row 3 */}
+            <Button variant="function" onClick={() => handleFunction('exp')}>exp</Button>
+            <Button variant="function" onClick={() => handleFunction('fact')}>n!</Button>
+            <Button variant="function" onClick={() => handleNumber('pi')}>π</Button>
+            <Button variant="function" onClick={() => handleNumber('e')}>e</Button>
 
-            {/* Main Keypad */}
-            <div className="grid grid-cols-4 gap-3">
-              <Button variant="operator" onClick={clear} className="text-red-400">AC</Button>
-              <Button variant="operator" onClick={backspace}><Delete size={20} /></Button>
-              <Button variant="operator" onClick={() => handleOperator('%')}>%</Button>
-              <Button variant="operator" onClick={() => handleOperator('/')}>÷</Button>
+            {/* Scientific Row 4 */}
+            <Button variant="function" onClick={() => handleNumber('(')}>(</Button>
+            <Button variant="function" onClick={() => handleNumber(')')}>)</Button>
+            <Button variant="function" onClick={() => handleOperator('^')}>^</Button>
+            <Button variant="operator" onClick={() => handleOperator('%')}>%</Button>
 
-              <Button onClick={() => handleNumber('7')}>7</Button>
-              <Button onClick={() => handleNumber('8')}>8</Button>
-              <Button onClick={() => handleNumber('9')}>9</Button>
-              <Button variant="operator" onClick={() => handleOperator('*')}>×</Button>
+            {/* Main Keypad - Row 1 */}
+            <Button variant="operator" onClick={clear} className="text-red-400">AC</Button>
+            <Button variant="operator" onClick={backspace}><Delete size={20} /></Button>
+            <Button variant="operator" onClick={() => handleOperator('/')}>÷</Button>
+            <Button variant="operator" onClick={() => handleOperator('*')}>×</Button>
 
-              <Button onClick={() => handleNumber('4')}>4</Button>
-              <Button onClick={() => handleNumber('5')}>5</Button>
-              <Button onClick={() => handleNumber('6')}>6</Button>
-              <Button variant="operator" onClick={() => handleOperator('-')}>−</Button>
+            {/* Main Keypad - Row 2 */}
+            <Button onClick={() => handleNumber('7')} className="text-xl">7</Button>
+            <Button onClick={() => handleNumber('8')} className="text-xl">8</Button>
+            <Button onClick={() => handleNumber('9')} className="text-xl">9</Button>
+            <Button variant="operator" onClick={() => handleOperator('-')}>−</Button>
 
-              <Button onClick={() => handleNumber('1')}>1</Button>
-              <Button onClick={() => handleNumber('2')}>2</Button>
-              <Button onClick={() => handleNumber('3')}>3</Button>
-              <Button variant="operator" onClick={() => handleOperator('+')}>+</Button>
+            {/* Main Keypad - Row 3 */}
+            <Button onClick={() => handleNumber('4')} className="text-xl">4</Button>
+            <Button onClick={() => handleNumber('5')} className="text-xl">5</Button>
+            <Button onClick={() => handleNumber('6')} className="text-xl">6</Button>
+            <Button variant="operator" onClick={() => handleOperator('+')}>+</Button>
 
-              <Button onClick={() => handleNumber('0')} className="col-span-2">0</Button>
-              <Button onClick={() => handleNumber('.')}>.</Button>
-              <Button variant="accent" onClick={calculate}>=</Button>
-            </div>
+            {/* Main Keypad - Row 4 */}
+            <Button onClick={() => handleNumber('1')} className="text-xl">1</Button>
+            <Button onClick={() => handleNumber('2')} className="text-xl">2</Button>
+            <Button onClick={() => handleNumber('3')} className="text-xl">3</Button>
+            <Button variant="accent" onClick={calculate} className="row-span-2 h-full text-2xl">=</Button>
+
+            {/* Main Keypad - Row 5 */}
+            <Button onClick={() => handleNumber('0')} className="col-span-2 text-xl">0</Button>
+            <Button onClick={() => handleNumber('.')} className="text-xl">.</Button>
           </div>
         </div>
 
