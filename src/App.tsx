@@ -53,7 +53,7 @@ const Button = ({
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
       className={cn(
-        'h-14 rounded-xl font-medium transition-colors flex items-center justify-center',
+        'h-12 md:h-14 rounded-xl font-medium transition-colors flex items-center justify-center',
         variants[variant],
         className
       )}
@@ -78,10 +78,14 @@ export default function App() {
   }, [aiMessages]);
 
   const handleNumber = (num: string) => {
+    let val = num;
+    if (num === 'pi') val = 'pi';
+    if (num === 'e') val = 'e';
+
     if (display === '0' || display === 'Error') {
-      setDisplay(num);
+      setDisplay(val);
     } else {
-      setDisplay(display + num);
+      setDisplay(display + val);
     }
   };
 
@@ -214,9 +218,9 @@ export default function App() {
           </div>
 
           {/* Keypad */}
-          <div className="p-6 grid grid-cols-4 md:grid-cols-5 gap-3">
-            {/* Scientific Functions (Visible on md+) */}
-            <div className="hidden md:contents">
+          <div className="p-6 space-y-4">
+            {/* Scientific Functions */}
+            <div className="grid grid-cols-5 gap-2">
               <Button variant="function" onClick={() => handleFunction('sin')}>sin</Button>
               <Button variant="function" onClick={() => handleFunction('cos')}>cos</Button>
               <Button variant="function" onClick={() => handleFunction('tan')}>tan</Button>
@@ -228,36 +232,40 @@ export default function App() {
               <Button variant="function" onClick={() => handleFunction('pow3')}>x³</Button>
               <Button variant="function" onClick={() => handleFunction('exp')}>exp</Button>
               <Button variant="function" onClick={() => handleFunction('fact')}>n!</Button>
+
+              <Button variant="function" onClick={() => handleNumber('(')}>(</Button>
+              <Button variant="function" onClick={() => handleNumber(')')}>)</Button>
+              <Button variant="function" onClick={() => handleOperator('^')}>^</Button>
+              <Button variant="function" onClick={() => handleNumber('pi')}>π</Button>
+              <Button variant="function" onClick={() => handleNumber('e')}>e</Button>
             </div>
 
-            {/* Standard Keypad */}
-            <Button variant="operator" onClick={clear} className="text-red-400">AC</Button>
-            <Button variant="operator" onClick={backspace}><Delete size={20} /></Button>
-            <Button variant="operator" onClick={() => handleOperator('%')}>%</Button>
-            <Button variant="operator" onClick={() => handleOperator('/')}>÷</Button>
-            <Button variant="operator" onClick={() => handleOperator('*')} className="hidden md:flex">×</Button>
+            {/* Main Keypad */}
+            <div className="grid grid-cols-4 gap-3">
+              <Button variant="operator" onClick={clear} className="text-red-400">AC</Button>
+              <Button variant="operator" onClick={backspace}><Delete size={20} /></Button>
+              <Button variant="operator" onClick={() => handleOperator('%')}>%</Button>
+              <Button variant="operator" onClick={() => handleOperator('/')}>÷</Button>
 
-            <Button onClick={() => handleNumber('7')}>7</Button>
-            <Button onClick={() => handleNumber('8')}>8</Button>
-            <Button onClick={() => handleNumber('9')}>9</Button>
-            <Button variant="operator" onClick={() => handleOperator('*')} className="md:hidden">×</Button>
-            <Button variant="operator" onClick={() => handleOperator('-')}>−</Button>
+              <Button onClick={() => handleNumber('7')}>7</Button>
+              <Button onClick={() => handleNumber('8')}>8</Button>
+              <Button onClick={() => handleNumber('9')}>9</Button>
+              <Button variant="operator" onClick={() => handleOperator('*')}>×</Button>
 
-            <Button onClick={() => handleNumber('4')}>4</Button>
-            <Button onClick={() => handleNumber('5')}>5</Button>
-            <Button onClick={() => handleNumber('6')}>6</Button>
-            <Button variant="operator" onClick={() => handleOperator('+')}>+</Button>
-            <Button variant="operator" onClick={() => handleOperator('^')} className="hidden md:flex">^</Button>
+              <Button onClick={() => handleNumber('4')}>4</Button>
+              <Button onClick={() => handleNumber('5')}>5</Button>
+              <Button onClick={() => handleNumber('6')}>6</Button>
+              <Button variant="operator" onClick={() => handleOperator('-')}>−</Button>
 
-            <Button onClick={() => handleNumber('1')}>1</Button>
-            <Button onClick={() => handleNumber('2')}>2</Button>
-            <Button onClick={() => handleNumber('3')}>3</Button>
-            <Button variant="accent" onClick={calculate} className="row-span-2 h-full">=</Button>
-            <Button variant="operator" onClick={() => handleNumber('(')} className="hidden md:flex">(</Button>
+              <Button onClick={() => handleNumber('1')}>1</Button>
+              <Button onClick={() => handleNumber('2')}>2</Button>
+              <Button onClick={() => handleNumber('3')}>3</Button>
+              <Button variant="operator" onClick={() => handleOperator('+')}>+</Button>
 
-            <Button onClick={() => handleNumber('0')} className="col-span-2">0</Button>
-            <Button onClick={() => handleNumber('.')}>.</Button>
-            <Button variant="operator" onClick={() => handleNumber(')')} className="hidden md:flex">)</Button>
+              <Button onClick={() => handleNumber('0')} className="col-span-2">0</Button>
+              <Button onClick={() => handleNumber('.')}>.</Button>
+              <Button variant="accent" onClick={calculate}>=</Button>
+            </div>
           </div>
         </div>
 
