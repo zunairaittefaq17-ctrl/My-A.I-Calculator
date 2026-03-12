@@ -1,15 +1,17 @@
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 export async function solveMathProblem(problem: string) {
-  const response = await ai.models.generateContent({
-    model: "gemini-3.1-pro-preview",
-    contents: `You are a mathematical expert. Solve the following math problem and provide a clear, step-by-step explanation. Problem: ${problem}`,
-    config: {
-      temperature: 0.1,
+  const response = await fetch("/api/solve", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({ problem }),
   });
 
-  return response.text;
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || "Failed to solve problem");
+  }
+
+  const data = await response.json();
+  return data.text;
 }

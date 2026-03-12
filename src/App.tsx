@@ -160,8 +160,11 @@ export default function App() {
     try {
       const response = await solveMathProblem(userMsg);
       setAiMessages(prev => [...prev, { role: 'ai', content: response || 'Sorry, I couldn\'t solve that.' }]);
-    } catch (error) {
-      setAiMessages(prev => [...prev, { role: 'ai', content: 'Error connecting to AI service.' }]);
+    } catch (error: any) {
+      const errorMessage = error.message.includes("API_KEY_MISSING") 
+        ? "⚠️ Gemini API Key is missing. Please configure it in your environment variables."
+        : "❌ Error connecting to AI service. Please try again later.";
+      setAiMessages(prev => [...prev, { role: 'ai', content: errorMessage }]);
     } finally {
       setIsAiLoading(false);
     }
