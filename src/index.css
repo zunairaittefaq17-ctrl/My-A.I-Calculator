@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-calculator-bg: #151619;
+  --color-calculator-display: #1a1b1e;
+  --color-calculator-accent: #3b82f6;
+  --color-calculator-text: #ffffff;
+  --color-calculator-muted: #8e9299;
+}
+
+@layer base {
+  body {
+    @apply bg-[#E6E6E6] text-calculator-text font-sans;
+  }
+}
+
